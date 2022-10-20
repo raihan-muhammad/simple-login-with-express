@@ -4,7 +4,7 @@ const autorize = async (req, res, next) => {
     try {
         const bearerToken = req.headers.authorization;
         const token = bearerToken.split(" ")[1];
-        const isiDataToken = jwt.verify(token, "secret key");
+        const isiDataToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
         await db.Authentication.findByPk(isiDataToken.id)
         next();
     } catch(err){

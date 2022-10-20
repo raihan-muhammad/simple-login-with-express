@@ -31,7 +31,7 @@ const login = async (req, res) => {
         return res.status(422).json({ message: "email or password not found!"})
     }
 
-    const token = jwt.sign({ id: checkData.id, email: checkData.email, password: checkData.password}, "secret key");
+    const token = jwt.sign({ id: checkData.id, email: checkData.email, password: checkData.password}, process.env.JWT_SECRET_ENV);
 
     return res.status(200).json({ message: "login successfully!", token});
 }
